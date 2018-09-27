@@ -1,32 +1,65 @@
 {% if categories %}
-  <div class="container">
+<div class="container">
     <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-primary">
-      <div id="category" class="d-block d-sm-block d-lg-none">{{ text_category }}</div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#narbar-menu"><i class="fa fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="narbar-menu">
-        <ul class="navbar-nav">
-          {% for category in categories %}
-            {% if category.children %}
-              <li class="nav-item dropdown"><a href="{{ category.href }}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
-                <div class="dropdown-menu">
-                  <div class="dropdown-inner">
-                    {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
-                      <ul class="list-unstyled">
-                        {% for child in children %}
-                          <li><a href="{{ child.href }}" class="nav-link">{{ child.name }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    {% endfor %}
-                  </div>
-                  <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a>
-                </div>
-              </li>
-            {% else %}
-              <li class="nav-item"><a href="{{ category.href }}" class="nav-link">{{ category.name }}</a></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+        <div id="category" class="d-block d-sm-block d-lg-none">{{ text_category }}</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#narbar-menu"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="narbar-menu">
+            <ul class="navbar-nav">
+                {% for category in categories %}
+                {% if category.children %}
+                <li class="nav-item dropdown"><a href="{{ category.href }}" class="nav-link dropdown-toggle"
+                        data-toggle="dropdown">{{ category.name }}</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            {% for children in category.children|batch(category.children|length /
+                            category.column|round(1, 'ceil')) %}
+                            <ul class="list-unstyled">
+                                {% for child in children %}
+                                <li><a href="{{ child.href }}" class="nav-link">{{ child.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endfor %}
+                        </div>
+                        <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item"><a href="{{ category.href }}" class="nav-link">{{ category.name }}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="activity-text-link">
+            <style>
+                .activity-text-link {
+                    float: right;
+                    font-size: 14px;
+                    color: #fff;
+                    cursor: pointer;
+                    line-height: 40px;
+                }
+
+                .activity-text-link:hover {
+                    background: rgba(0, 0, 0, 0.1)
+                }
+
+                .activity-text-link img {
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: 20px;
+                    width: 20px;
+                    margin-right: 5px;
+                }
+
+                .activity-text-link a {
+                    color: #fff;
+                    vertical-align: middle;
+                    display: inline-block;
+                }
+            </style>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAYCAYAAAD+vg1LAAABG0lEQVRIie2VsUrDUBSGzykq7ShdHBShS4urcfAZXFz6AiL0XZx8ACdBOln6ADoqVHfBSaFLqw5Coevn4B+5vSYxiBmE/hByOP/Pl5vkcK9ZJGATuARmwAQ4AdYCvw6cAlNlhkAr5sTQVeCB7zoPMhcZ/jPQKAIfKvgIbAF7wFy9DrCjei6vJShAN2StROwN3a/dfWxmY6BvZke66vL77n6vxdya2baZrReteF9PfwHa6iXqPQGvqhN5beBNvd0icA24yfiGAGfAIMe7yoKNotA7cAw0o1wCHES9JtDjczpCjRwg9xUCubsLVipfKxP6jSoF31XArYJZsTwtfvrbZacizf3PqViCl+BFxUdTrspul6nCFf/FxvHF+AAZnWLhWX4PdgAAAABJRU5ErkJggg=="><a
+                target="__blank" href="https://baidu.com">非常给力的活动</a>
+        </div>
     </nav>
-  </div>
+</div>
 {% endif %}
